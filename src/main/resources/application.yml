@@ -1,0 +1,51 @@
+
+server:
+  port: 8080
+  error:
+    include-stacktrace: never
+
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: cadastrocia
+
+  application:
+    name: cadastrocia
+    
+
+
+# Configurações de segurança (opcional)
+# security:
+#   user:
+#     name: seu-usuario
+#     password: sua-senha
+#     roles: USER
+
+# Configurações do Thymeleaf (opcional)
+# thymeleaf:
+#   prefix: classpath:/templates/
+#   suffix: .html
+#   cache: false
+
+# Configurações de internacionalização (opcional)
+# spring:
+#   messages:
+#     basename: messages
+#     encoding: UTF-8
+#     cache-seconds: 3600
+
+# Configurações do Swagger (opcional)
+# springfox:
+#   documentation:
+#     enabled: true
+
+# Configurações do Lombok (opcional)
+# lombok:
+#   config:
+#     debug: true
+
+# Outras configurações específicas do seu projeto
+# advocacia:
+#   propriedade: valor
