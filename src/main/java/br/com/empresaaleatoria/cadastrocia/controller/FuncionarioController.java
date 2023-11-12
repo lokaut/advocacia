@@ -29,7 +29,7 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioAssembler assembler;
 
-	@PostMapping("/criar")
+	@PostMapping("/salvar")
 	public ResponseEntity<FuncionarioDTO> criarFuncionario(@RequestBody @Valid FuncionarioDTO funcionarioDTO) {
 		Funcionario funcionario = assembler.toEntity(funcionarioDTO);
 		Funcionario novoFuncionario = funcionarioService.criarFuncionario(funcionario);
