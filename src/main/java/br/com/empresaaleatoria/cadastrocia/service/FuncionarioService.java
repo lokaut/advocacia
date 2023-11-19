@@ -1,5 +1,7 @@
 package br.com.empresaaleatoria.cadastrocia.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,5 +17,10 @@ public class FuncionarioService {
     public Funcionario criarFuncionario(Funcionario funcionario) {
         return funcionarioRepository.save(funcionario);
     }
+
+	public List<Funcionario> findAllFuncionarios() {
+		return funcionarioRepository.findAll();
+		
+	}
 }
 

@@ -2,8 +2,9 @@ package br.com.empresaaleatoria.cadastrocia.controller;
 
 import static org.springframework.http.HttpStatus.CREATED;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,7 +30,7 @@ public class FuncionarioController {
 	@Autowired
 	private FuncionarioAssembler assembler;
 
-	@PostMapping("/salvar")
+	@PostMapping()
 	public ResponseEntity<FuncionarioDTO> criarFuncionario(@RequestBody @Valid FuncionarioDTO funcionarioDTO) {
 		Funcionario funcionario = assembler.toEntity(funcionarioDTO);
 		Funcionario novoFuncionario = funcionarioService.criarFuncionario(funcionario);
@@ -37,8 +38,11 @@ public class FuncionarioController {
 	}
 	
 	@GetMapping()
-	public ResponseEntity<Void> criarFuncionarios() {
-		return new ResponseEntity<>(HttpStatus.CREATED);
+	public ResponseEntity<Void> buscarTodosFuncionarios() {
+		List<Funcionario> funcionarios = funcionarioService.findAllFuncionarios();
+		funcionarios.stream().
+		assembler.toDTO(null);
+		return new ResponseEntity<>(CREATED);
 	}
 	
     @GetMapping("/status")
