@@ -11,6 +11,6 @@ public class Cidade {
 	
 	private String uf;
 	
-	private String codigoIbge;
+	private String ibge;
 
 }

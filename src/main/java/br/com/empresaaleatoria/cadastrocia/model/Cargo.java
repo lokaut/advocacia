@@ -2,6 +2,7 @@ package br.com.empresaaleatoria.cadastrocia.model;
 
 import java.math.BigDecimal;
 
+import br.com.empresaaleatoria.cadastrocia.model.type.CargoNomeType;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,10 +10,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Cargo {
 	
-	private String nome;
-	
 	private BigDecimal salario;
 	
-	private String descricao;
+	private CargoNomeType nome;
 
 }

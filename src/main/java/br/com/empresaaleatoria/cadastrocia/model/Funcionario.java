@@ -17,6 +17,8 @@ public class Funcionario {
 	
 	@Id
 	private ObjectId id;
+	
+	private Boolean ativo;
 
 	private String nome;
 	
