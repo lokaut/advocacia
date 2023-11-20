@@ -1,6 +1,11 @@
 package br.com.empresaaleatoria.cadastrocia.dto;
 
+import static br.com.empresaaleatoria.cadastrocia.util.DataUtils.formatarDataLocalDateToString;
+import static br.com.empresaaleatoria.cadastrocia.util.DataUtils.formatarStringToLocalDate;
 import static java.util.Objects.requireNonNull;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
@@ -10,17 +15,18 @@ import br.com.empresaaleatoria.cadastrocia.model.Contato;
 import br.com.empresaaleatoria.cadastrocia.model.Endereco;
 import br.com.empresaaleatoria.cadastrocia.model.Funcionario;
 import br.com.empresaaleatoria.cadastrocia.model.Telefone;
+import br.com.empresaaleatoria.cadastrocia.model.type.CargoNomeType;
 
 @Component
 public class FuncionarioAssembler {
 
-    public FuncionarioDTO toDTO(Funcionario funcionario) {
+    public FuncionarioDTO toDTO(Funcionario entity) {
         FuncionarioDTO dto = new FuncionarioDTO();
 
-        dto.setNome(requireNonNull(funcionario).getNome());
-        dto.setCpf(funcionario.getCpf());
+        dto.setNome(requireNonNull(entity).getNome());
+        dto.setCpf(entity.getCpf());
 
-        Endereco endereco = requireNonNull(funcionario).getEndereco();
+        Endereco endereco = requireNonNull(entity).getEndereco();
         dto.setLogradouro(endereco.getLogradouro());
         dto.setNumero(endereco.getNumero());
         dto.setBairro(endereco.getBairro());
@@ -28,25 +34,27 @@ public class FuncionarioAssembler {
         Cidade cidade = requireNonNull(endereco.getCidade());
         dto.setMunicipio(cidade.getMunicipio());
         dto.setUf(cidade.getUf());
-        dto.setCodigoIbge(cidade.getCodigoIbge());
+        dto.setCodigoIbge(cidade.getIbge());
 
         dto.setCep(endereco.getCep());
         dto.setComplemento(endereco.getComplemento());
 
-        Contato contato = requireNonNull(funcionario).getContato();
+        Contato contato = requireNonNull(entity).getContato();
         dto.setEmail(contato.getEmail());
 
         Telefone telefone = requireNonNull(contato.getTelefone());
         dto.setDdd(telefone.getDdd());
         dto.setTelefone(telefone.getNumero());
 
-        Cargo cargo = requireNonNull(funcionario).getCargo();
+        Cargo cargo = requireNonNull(entity).getCargo();
         dto.setSalario(cargo.getSalario());
-        dto.setDescricao(cargo.getDescricao());
+        
+        dto.setNome(cargo.getNome().name());
 
-        dto.setDataAdmissao(funcionario.getDataAdmissao());
-        dto.setDataNascimento(funcionario.getDataNascimento());
-        dto.setDataDesligamento(funcionario.getDataDesligamento());
+        dto.setDataAdmissao(formatarDataLocalDateToString(entity.getDataAdmissao()));
+        dto.setDataNascimento(formatarDataLocalDateToString(entity.getDataNascimento()));
+        dto.setDataDesligamento(formatarDataLocalDateToString(entity.getDataDesligamento()));
+        dto.setAtivo(entity.getAtivo());
 
         return dto;
     }
@@ -64,7 +72,7 @@ public class FuncionarioAssembler {
         Cidade cidade = new Cidade();
         cidade.setMunicipio(dto.getMunicipio());
         cidade.setUf(dto.getUf());
-        cidade.setCodigoIbge(dto.getCodigoIbge());
+        cidade.setIbge(dto.getCodigoIbge());
 
         endereco.setCidade(cidade);
         endereco.setCep(dto.getCep());
@@ -85,14 +93,21 @@ public class FuncionarioAssembler {
 
         Cargo cargo = new Cargo();
         cargo.setSalario(dto.getSalario());
-        cargo.setDescricao(dto.getDescricao());
+        cargo.setNome(CargoNomeType.valueOf(dto.getCargoNome().toUpperCase()));
+        
 
         funcionario.setCargo(cargo);
 
-        funcionario.setDataAdmissao(dto.getDataAdmissao());
-        funcionario.setDataNascimento(dto.getDataNascimento());
-        funcionario.setDataDesligamento(dto.getDataDesligamento());
+        funcionario.setDataAdmissao(formatarStringToLocalDate(dto.getDataAdmissao()) );
+        funcionario.setDataNascimento(formatarStringToLocalDate(dto.getDataNascimento()));
+        funcionario.setDataDesligamento(formatarStringToLocalDate(dto.getDataDesligamento()));
 
         return funcionario;
+    }
+    
+    public List<FuncionarioDTO> toDtoList(List<Funcionario> funcionarios) {
+        return funcionarios.stream()
+                .map(this::toDTO)
+                .collect(Collectors.toList());
     }
 }
