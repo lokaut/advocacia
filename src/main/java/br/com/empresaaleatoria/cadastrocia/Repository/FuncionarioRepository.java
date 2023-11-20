@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import br.com.empresaaleatoria.cadastrocia.model.Funcionario;
 
 public interface FuncionarioRepository extends MongoRepository<Funcionario, ObjectId> {
-	
+	Funcionario findByCpf(String cpf);
 }
