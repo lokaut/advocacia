@@ -37,15 +37,16 @@ public class FuncionarioDTO {
     @Null(message = "ativo precisa ser nulo")
     private Boolean ativo;
 
-    @NumberFormat
+    @Pattern(regexp = "^([0-9]{10})$", message = "O numero da residencia deve conter apenas numeros")
     private String numero;
 
+    @Null(message = "bairro precisa ser nulo")
     private String bairro;
 
-    @Pattern(regexp = "^[\\p{L} \\s]*$", message = "O campo deve conter apenas letras, espaços e acentos.")
+    @Null(message = "municipio precisa ser nulo")
     private String municipio;
 
-    @Size(max = 2)
+    @Null(message = "uf precisa ser nulo")
     private String uf;
 
     private String codigoIbge;
@@ -56,6 +57,7 @@ public class FuncionarioDTO {
     private String complemento;
 
     @Email(message = "email inválido")
+	@NotBlank(message = "O campo 'email' não pode estar em branco.")
     private String email;
 
     @Pattern(regexp = "^([1-9]{2})$", message = "O ddd deve conter apenas numeros")
@@ -68,7 +70,7 @@ public class FuncionarioDTO {
     private BigDecimal salario;
 
 	@Pattern(regexp = "^(?i)(estagiario|junior|pleno|senior)$", message = "A descrição do cargo deve ser 'estagiario', 'junior', 'pleno' ou 'senior'.")
-	@NotBlank(message = "O campo 'descricao' não pode estar em branco.")
+	@NotBlank(message = "O campo 'cargoNome' não pode estar em branco.")
     private String cargoNome;
 	
     @JsonFormat(pattern = "dd/MM/yyyy")
