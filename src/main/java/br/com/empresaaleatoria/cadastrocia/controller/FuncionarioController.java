@@ -44,7 +44,6 @@ public class FuncionarioController {
 	@GetMapping()
 	public ResponseEntity<List<FuncionarioDTO>> buscarTodosFuncionarios() {
 		List<Funcionario> funcionarios = funcionarioService.findAllFuncionarios();
-		assembler.toDtoList(funcionarios);
 		return new ResponseEntity<>(assembler.toDtoList(funcionarios), OK);
 	}
 	
@@ -53,6 +52,8 @@ public class FuncionarioController {
 		Funcionario funcionarioEncontrado = funcionarioService.findByCPF(cpf);
 		return new ResponseEntity<>(assembler.toDTO(funcionarioEncontrado), OK);
 	}
+	
+	//update
 	
 	@DeleteMapping("desligamento/{cpf}")
 	public ResponseEntity<FuncionarioDTO> demitirFuncionario(@PathVariable("cpf") String cpf) {
