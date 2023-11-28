@@ -4,24 +4,29 @@ server:
   error:
     include-stacktrace: never
 
-# spring:
-#   data:
-#     mongodb:
-#       host: localhost
-#       port: 27017
-#       database: cadastrocia
+version: '3'
+
+services:
+  mongodb:
+    image: mongo
+    container_name: my-mongo-container
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: HcffdHGe65-d-E23efEE415562egg4bG
+    ports:
+      - "17036:27017"
 
   # application:
   #   name: cadastrocia
     
-spring:
-  data:
-    mongodb:
-      host: "${MONGOHOST}"
-      port: "${MONGOPORT}"
-      database: "cadastrocia"
-      username: "${MONGOUSER}"
-      password: "${MONGOPASSWORD}"
+#spring:
+#  data:
+#    mongodb:
+#      host: "${MONGOHOST}"
+#      port: "${MONGOPORT}"
+#      database: "cadastrocia"
+#      username: "${MONGOUSER}"
+#      password: "${MONGOPASSWORD}"
 
 
 
