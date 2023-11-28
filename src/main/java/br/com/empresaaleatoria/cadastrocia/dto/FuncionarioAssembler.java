@@ -49,7 +49,7 @@ public class FuncionarioAssembler {
         Cargo cargo = requireNonNull(entity).getCargo();
         dto.setSalario(cargo.getSalario());
         
-        dto.setNome(cargo.getNome().name());
+        dto.setCargoNome(cargo.getNome().name());
 
         dto.setDataAdmissao(formatarDataLocalDateToString(entity.getDataAdmissao()));
         dto.setDataNascimento(formatarDataLocalDateToString(entity.getDataNascimento()));
