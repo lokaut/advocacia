@@ -13,7 +13,6 @@ spring:
    mongodb:
      host: "roundhouse.proxy.rlwy.net"
      port: "17036"
-     database: "cadastrocia"
      username: "mongo"
      password: "HcffdHGe65-d-E23efEE415562egg4bG"
 
