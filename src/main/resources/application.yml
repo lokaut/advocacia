@@ -4,15 +4,15 @@ server:
   error:
     include-stacktrace: never
 
-spring:
-  data:
-    mongodb:
-      host: localhost
-      port: 27017
-      database: cadastrocia
+# spring:
+#   data:
+#     mongodb:
+#       host: localhost
+#       port: 27017
+#       database: cadastrocia
 
-  application:
-    name: cadastrocia
+  # application:
+  #   name: cadastrocia
     
 
 
