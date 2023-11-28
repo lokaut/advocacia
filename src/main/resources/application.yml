@@ -11,10 +11,11 @@ services:
     image: mongo
     container_name: my-mongo-container
     environment:
-      MONGO_INITDB_ROOT_USERNAME: mongo
-      MONGO_INITDB_ROOT_PASSWORD: HcffdHGe65-d-E23efEE415562egg4bG
+      MONGO_URL: "mongodb://mongo:HcffdHGe65-d-E23efEE415562egg4bG@mongodb.railway.internal:27017"
     ports:
       - "17036:27017"
+
+
 
   # application:
   #   name: cadastrocia
