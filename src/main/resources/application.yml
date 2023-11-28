@@ -4,31 +4,18 @@ server:
   error:
     include-stacktrace: never
 
-version: '3'
-
-services:
-  mongodb:
-    image: mongo
-    container_name: my-mongo-container
-    environment:
-      MONGO_URI: "mongodb://mongo:HcffdHGe65-d-E23efEE415562egg4bG@roundhouse.proxy.rlwy.net:17036"
-    ports:
-      - "17036:27017"
-    command: mongod --bind_ip_all
-
-
 
   # application:
   #   name: cadastrocia
     
-#spring:
-#  data:
-#    mongodb:
-#      host: "${MONGOHOST}"
-#      port: "${MONGOPORT}"
-#      database: "cadastrocia"
-#      username: "${MONGOUSER}"
-#      password: "${MONGOPASSWORD}"
+spring:
+ data:
+   mongodb:
+     host: "roundhouse.proxy.rlwy.net"
+     port: "17036"
+     database: "cadastrocia"
+     username: "mongo"
+     password: "HcffdHGe65-d-E23efEE415562egg4bG"
 
 
 
