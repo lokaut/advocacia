@@ -11,9 +11,10 @@ services:
     image: mongo
     container_name: my-mongo-container
     environment:
-      MONGO_URL: "mongodb://mongo:HcffdHGe65-d-E23efEE415562egg4bG@mongodb.railway.internal:27017"
+      MONGO_URI: "mongodb://mongo:HcffdHGe65-d-E23efEE415562egg4bG@roundhouse.proxy.rlwy.net:17036"
     ports:
       - "17036:27017"
+    command: mongod --bind_ip_all
 
 
 
